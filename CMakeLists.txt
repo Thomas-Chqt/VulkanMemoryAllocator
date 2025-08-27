@@ -24,10 +24,11 @@ cmake_minimum_required(VERSION 3.15...3.26)
 
 project(VMA VERSION 3.3.0 LANGUAGES CXX)
 
-add_library(VulkanMemoryAllocator INTERFACE)
+add_library(VulkanMemoryAllocator STATIC)
 add_library(GPUOpen::VulkanMemoryAllocator ALIAS VulkanMemoryAllocator)
 
-target_include_directories(VulkanMemoryAllocator INTERFACE $<BUILD_INTERFACE:${CMAKE_CURRENT_SOURCE_DIR}/include>)
+target_sources(VulkanMemoryAllocator PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/vk_mem_alloc.cpp ${CMAKE_CURRENT_SOURCE_DIR}/include/vk_mem_alloc.h)
+target_include_directories(VulkanMemoryAllocator PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
 if (CMAKE_VERSION VERSION_LESS "3.21")
     # https://cmake.org/cmake/help/latest/variable/PROJECT_IS_TOP_LEVEL.html
