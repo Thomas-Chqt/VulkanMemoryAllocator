@@ -30,7 +30,7 @@ add_library(GPUOpen::VulkanMemoryAllocator ALIAS VulkanMemoryAllocator)
 target_sources(VulkanMemoryAllocator PRIVATE ${CMAKE_CURRENT_SOURCE_DIR}/src/vk_mem_alloc.cpp ${CMAKE_CURRENT_SOURCE_DIR}/include/vk_mem_alloc.h)
 target_include_directories(VulkanMemoryAllocator PUBLIC ${CMAKE_CURRENT_SOURCE_DIR}/include)
 
-target_compile_options(VulkanMemoryAllocator
+target_compile_options(VulkanMemoryAllocator PRIVATE
     $<$<CXX_COMPILER_ID:MSVC>:/W0>
     $<$<OR:$<CXX_COMPILER_ID:GNU>,$<CXX_COMPILER_ID:Clang>,$<CXX_COMPILER_ID:AppleClang>,$<CXX_COMPILER_ID:Intel>>:-w>
 )
